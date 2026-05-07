@@ -18,7 +18,6 @@
 
 package net.java.faker.ui.elements;
 
-import net.java.faker.ui.Window;
 import net.java.faker.util.network.NetworkInterface;
 import net.java.faker.util.network.NetworkUtil;
 
@@ -81,10 +80,6 @@ public class NetworkAdapterComboBox extends JComboBox<NetworkInterface> {
         new Thread(() -> {
             List<NetworkInterface> interfaces = NetworkUtil.getNetworkInterfaces();
 
-            if (event != null) {
-                //wait for constructor ends and window to be fully initialized
-                Window.getInstance();
-            }
             SwingUtilities.invokeLater(() -> {
                 if (event == null) {
                     removeActionListener(selectListener);

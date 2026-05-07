@@ -12,13 +12,13 @@ base {
 launch4j {
     manifest = "${project.projectDir}/manifest.xml"
     jarTask = project.tasks.shadowJar
-    outfile = 'faker-' + "${project.version}" + '.exe'
+    outfile = 'faker.exe'
     headerType = 'gui'
-    productName = 'Faker'
+    productName = 'Faker Custom UI fork by anydefax'
     mutexName = 'faker_mutex'
     jreMinVersion = '17'
     version = "${project.version}"
-    icon = "${project.projectDir}/src/main/resources/assets/faker/icon/icon_64.ico"
+    icon = "${project.projectDir}/src/main/resources/assets/faker/icon/amethyst_64.ico"
     jvmOptions.add("-Dfile.encoding=UTF-8")
     downloadUrl = "https://adoptium.net/"
 }
@@ -79,4 +79,3 @@ dependencies {
 test {
     useJUnitPlatform()
 }
-

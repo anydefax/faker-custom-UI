@@ -47,6 +47,14 @@ public class Config {
     public final BooleanValue autoLatency = registerBoolean("AutoLatency").defaultValue(false);
     public final BooleanValue newPingCorrection = registerBoolean("NewPingCorrection").defaultValue(false);
     public final BooleanValue logPackets = registerBoolean("LogPackets").defaultValue(true);
+    public final StringValue uiShell = registerString("UIShell").defaultValue("custom");
+    public final StringValue uiTheme = registerString("UITheme").defaultValue("premium-prestige");
+    public final StringValue uiCustomBackground = registerString("UICustomBackground").defaultValue("#0A0906");
+    public final StringValue uiCustomSurface = registerString("UICustomSurface").defaultValue("#221D11");
+    public final StringValue uiCustomAccent = registerString("UICustomAccent").defaultValue("#EBB52D");
+    public final StringValue uiCustomAccentSoft = registerString("UICustomAccentSoft").defaultValue("#FFE17E");
+    public final StringValue uiCustomText = registerString("UICustomText").defaultValue("#FFF7DE");
+    public final StringValue uiCustomMuted = registerString("UICustomMuted").defaultValue("#CEB986");
     public final StringValue locale = registerString("Locale");
     public final StringValue targetAdapter = registerString("TargetAdapter");
     public final StringValue dhcp_interface = registerString("DHCP_interface");

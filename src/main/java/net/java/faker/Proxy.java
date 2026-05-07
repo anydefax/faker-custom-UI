@@ -35,6 +35,7 @@ import net.java.faker.proxy.session.ProxyConnection;
 import net.java.faker.proxy.util.chat.Ints;
 import net.java.faker.save.AccountManager;
 import net.java.faker.save.Config;
+import net.java.faker.ui.AmethystWindow;
 import net.java.faker.ui.Window;
 import net.java.faker.ui.tab.AdvancedTab;
 import net.java.faker.util.HttpHostSpoofer;
@@ -151,7 +152,11 @@ public class Proxy {
         } else {
             Proxy.proxyAddress = new InetSocketAddress("127.0.0.1", 25565);
         }
-        Window.getInstance();
+        if ("classic".equalsIgnoreCase(config.uiShell.get())) {
+            Window.getInstance();
+        } else {
+            AmethystWindow.getInstance();
+        }
         registerEvents();
         initHop2();
     }

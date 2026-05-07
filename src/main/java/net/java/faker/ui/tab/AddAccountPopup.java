@@ -37,12 +37,27 @@ import static net.java.faker.ui.Window.BODY_BLOCK_PADDING;
 public class AddAccountPopup extends JDialog {
 
     private final Window parent;
+    private final Frame owner;
     private final StepMsaDeviceCode.MsaDeviceCode deviceCode;
     private boolean externalClose;
 
     public AddAccountPopup(final Window parent, final StepMsaDeviceCode.MsaDeviceCode deviceCode, final Consumer<AddAccountPopup> popupConsumer, final Runnable closeListener) {
         super(parent, true);
         this.parent = parent;
+        this.owner = parent;
+        this.deviceCode = deviceCode;
+        popupConsumer.accept(this);
+
+        this.initWindow(closeListener);
+        this.initComponents();
+        this.pack();
+        this.setVisible(true);
+    }
+
+    public AddAccountPopup(final Frame parent, final StepMsaDeviceCode.MsaDeviceCode deviceCode, final Consumer<AddAccountPopup> popupConsumer, final Runnable closeListener) {
+        super(parent, true);
+        this.parent = null;
+        this.owner = parent;
         this.deviceCode = deviceCode;
         popupConsumer.accept(this);
 
@@ -63,7 +78,7 @@ public class AddAccountPopup extends JDialog {
         this.setTitle(I18n.get("popup.login_account.title"));
         this.setSize(400, 140);
         this.setResizable(false);
-        this.setLocationRelativeTo(this.parent);
+        this.setLocationRelativeTo(this.owner);
     }
 
     private void initComponents() {

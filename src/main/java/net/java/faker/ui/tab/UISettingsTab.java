@@ -18,6 +18,8 @@
 
 package net.java.faker.ui.tab;
 
+import net.java.faker.Proxy;
+import net.java.faker.ui.AmethystWindow;
 import net.java.faker.ui.GBC;
 import net.java.faker.ui.I18n;
 import net.java.faker.ui.UITab;
@@ -63,6 +65,25 @@ public class UISettingsTab extends UITab {
                 I18n.update();
             });
             GBC.create(body).grid(0, gridy++).weightx(1).insets(0, BORDER_PADDING, 0, BORDER_PADDING).fill(GBC.HORIZONTAL).add(language);
+        }
+        {
+            JLabel shellLabel = new JLabel("UI shell / app");
+            GBC.create(body).grid(0, gridy++).insets(BORDER_PADDING, BORDER_PADDING, 0, BORDER_PADDING).anchor(GBC.NORTHWEST).add(shellLabel);
+
+            JComboBox<String> shell = new JComboBox<>(new String[]{"Classic", "Faker Custom UI fork by anydefax"});
+            shell.setSelectedIndex("classic".equalsIgnoreCase(Proxy.getConfig().uiShell.get()) ? 0 : 1);
+            shell.addActionListener(event -> {
+                String value = shell.getSelectedIndex() == 0 ? "classic" : "custom";
+                if (value.equalsIgnoreCase(Proxy.getConfig().uiShell.get())) return;
+                Proxy.getConfig().uiShell.set(value);
+                Proxy.getConfig().save();
+                if ("custom".equals(value)) {
+                    window.hideTray();
+                    window.dispose();
+                    AmethystWindow.getInstance();
+                }
+            });
+            GBC.create(body).grid(0, gridy++).weightx(1).insets(0, BORDER_PADDING, 0, BORDER_PADDING).fill(GBC.HORIZONTAL).add(shell);
         }
 
         contentPane.setLayout(new BorderLayout());
